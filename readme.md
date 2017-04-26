@@ -1,3 +1,44 @@
+# Requerimientos
+- [x] PHP >= 5.5.9
+- [x] OpenSSL PHP Extension
+- [x] PDO PHP Extension
+- [x] Mbstring PHP Extension
+- [x] Tokenizer PHP Extension
+
+- [x] XAMPP 
+- [x] Mysql
+- [x] Composer
+- [x] Git
+- [x] Editor de Texto
+- [x] Github Desktop 
+
+
+
+# Instrucciónes de Instalación
+
+1. Clonar proyecto git clone 
+  1. Entrar en la carpeta C:\xampp\htdocs\
+  2. Acceder en git bash 
+  3. cd C:\xampp\htdocs\
+  4. git clone https://github.com/cumez1/sistaller.git
+
+2. Composer Install
+  1. Acceder a la carpeta C:\xampp\htdocs\sistaller
+  2. Acceder en git bash
+  3. cd C:\xampp\htdocs\sistaller
+  4. composer install
+
+3. Crear base de datos en mysql sistaller
+  1. ingresar a http://localhost/phpmyadmin/
+  2. crear base de datos "sistaller" con cotejamiento utf8_general_ci
+
+
+4. Enviar migraciones a la base de datos
+  1. Acceder en git bash
+  2. cd C:\xampp\htdocs\sistaller
+  3. php artisan migrate
+
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
