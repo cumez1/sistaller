@@ -13,7 +13,6 @@
 - [x] Github Desktop 
 
 
-
 # Instrucciónes de Instalación
 
 1. Clonar proyecto git clone 
