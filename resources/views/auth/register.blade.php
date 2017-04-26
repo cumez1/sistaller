@@ -1,15 +1,13 @@
 @extends('layouts.auth')
 
-@section('htmlheader_title')
-    Register
-@endsection
+@section('htmlheader_title','Registro')
 
 @section('content')
 
     <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href="{{ url('/home') }}"><b>Admin</b>LTE</a>
+            <a href="{{ url('/home') }}"><b>Sistemas</b>GT</a>
         </div>
 
         @if (count($errors) > 0)
@@ -63,8 +61,6 @@
                     </div><!-- /.col -->
                 </div>
             </form>
-
-            @include('auth.partials.social_login')
 
             <a href="{{ url('/login') }}" class="text-center">{{ trans('adminlte_lang::message.membreship') }}</a>
         </div><!-- /.form-box -->
