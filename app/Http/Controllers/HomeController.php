@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Alert;
 
 /**
  * Class HomeController
@@ -33,6 +34,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        Alert::info('Info Message', 'Optional Title');
         return view('home');
+
     }
 }

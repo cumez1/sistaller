@@ -37,6 +37,19 @@
   2. cd C:\xampp\htdocs\sistaller
   3. php artisan migrate
 
+# Paquetes
+1. Datatables
+https://github.com/yajra/laravel-datatables
+
+2. Sweet Alert
+https://github.com/uxweb/sweet-alert
+
+3. Debugbar
+https://github.com/barryvdh/laravel-debugbar
+
+4. Dompdf
+https://github.com/barryvdh/laravel-dompdf
+
 
 # Laravel PHP Framework
 
