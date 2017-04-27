@@ -20,7 +20,6 @@ class CreateClientesTable extends Migration
             $table->string('direccion');
             $table->date('fecha_nac');
             $table->string('telefono');
-            $table->string('email');
             $table->integer('activo');
         });
     }

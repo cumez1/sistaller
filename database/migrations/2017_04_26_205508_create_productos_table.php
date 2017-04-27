@@ -17,6 +17,8 @@ class CreateProductosTable extends Migration
             //$table->string('codigo')->unique();
             $table->integer('id_categoria')->unsigned();
             $table->string('nombre');
+            $table->string('descripcion');
+            $table->string('marca');
             $table->decimal('precio', 12, 2);
             $table->integer('stock');
             $table->integer('activo');

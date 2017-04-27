@@ -15,12 +15,20 @@ class CreateOrdenTrabajosTable extends Migration
         Schema::create('ordenes', function (Blueprint $table) {
             $table->increments('id_orden');
             $table->integer('id_cliente')->unsigned();
+            $table->string('cliente_contacto');
+
             $table->dateTime('fecha_registro');
             $table->dateTime('fecha_entrega');
-            $table->string('usuario');
-            $table->string('responsable');
-            $table->string('contacto');
+            $table->string('tipo_vehiculo');
+            $table->string('vehiculo');
+            $table->string('modelo');
+            $table->string('placa');
+
+            $table->string('usuario_registra');
+            $table->string('usuario_responsable');
+           
             $table->longText('observaciones');
+            $table->integer('estado');
             $table->foreign('id_cliente')
                   ->references('id_cliente')
                   ->on('clientes');

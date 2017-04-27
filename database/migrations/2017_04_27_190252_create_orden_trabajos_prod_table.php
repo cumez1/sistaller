@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdenTrabajosDetTable extends Migration
+class CreateOrdenTrabajosProdTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateOrdenTrabajosDetTable extends Migration
      */
     public function up()
     {
-        Schema::create('ordenes_det', function (Blueprint $table) {
+        Schema::create('ordenes_trabajo_prod', function (Blueprint $table) {
             $table->integer('num_detalle')->unsigned();
             $table->integer('id_orden')->unsigned();
             $table->integer('id_producto')->unsigned();
@@ -30,9 +30,6 @@ class CreateOrdenTrabajosDetTable extends Migration
                   ->references('id_producto')
                   ->on('productos');
 
-
-
-
         });
     }
 
@@ -43,6 +40,6 @@ class CreateOrdenTrabajosDetTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ordenes_det');
+        Schema::drop('ordenes_trabajo_prod');
     }
 }

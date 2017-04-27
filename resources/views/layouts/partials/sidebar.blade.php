@@ -36,6 +36,20 @@
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-tachometer'></i> <span>Dashboard</span></a></li>
 
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-users'></i> <span>Clientes</span></a></li>
+
+            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-sitemap'></i> <span>Categoria Productos</span></a></li>
+
+            <li class="active"><a href="{{ url('home') }}"><i class='fa fa fa-barcode'></i> <span>Productos</span></a></li>
+
+            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-cog'></i> <span>Categoria Serivicios</span></a></li>
+
+            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-cogs'></i> <span>Servicios</span></a></li>
+
+            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-shopping-cart'></i> <span>Ordenes de Trabajo</span></a></li>
+
+            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-file-pdf-o'></i> <span>Reportes</span></a></li>
+
+            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-user'></i> <span>Usuarios</span></a></li>
             
         </ul><!-- /.sidebar-menu -->
     </section>
