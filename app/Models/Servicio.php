@@ -13,5 +13,8 @@ class Servicio extends Model
 
     protected $fillable = ['id_tiposervicio','nombre','descripcion','precio','activo'];
 
-
+    public function tipo()
+    {
+        return $this->belongsTo(TipoServicio::class,'id_tiposervicio', 'id_tiposervicio');
+    }
 }

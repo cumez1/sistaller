@@ -13,5 +13,9 @@ class Cliente extends Model
 
     protected $fillable = ['nit','nombre','apellido','direccion','fecha_nac','telefono','activo'];
 
+    public function ordenes()
+    {
+        return $this->hasMany(OrdenTrabajo::class,'id_cliente', 'id_cliente');
+    }
 
 }

@@ -17,8 +17,8 @@ class CreateOrdenTrabajosTable extends Migration
             $table->integer('id_cliente')->unsigned();
             $table->string('cliente_contacto');
 
-            $table->dateTime('fecha_registro');
-            $table->dateTime('fecha_entrega');
+            $table->date('fecha_registro');
+            $table->date('fecha_entrega');
             $table->string('tipo_vehiculo');
             $table->string('vehiculo');
             $table->string('modelo');

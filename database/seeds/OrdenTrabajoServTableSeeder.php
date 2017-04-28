@@ -32,7 +32,7 @@ class OrdenTrabajoServTableSeeder extends Seeder
         ];
 
         foreach($ordenesServicios as $servicio){
-            OrdenTrabajo::create($servicio);
+            OrdenTrabajoServ::create($servicio);
         }
     }
 }

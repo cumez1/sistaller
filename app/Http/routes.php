@@ -14,3 +14,62 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Route::group(['prefix' => 'test/'], function () {
+    Route::get('usuarios', function(){
+        $users = \App\User::all();
+        return $users;
+    });
+
+    Route::get('clientes', function(){
+        $users = \App\Models\Cliente::all();
+        foreach ($users as $user) {
+            $ordenes = $user->ordenes;
+            foreach ($ordenes as $orden) {
+                $det_productos = $orden->det_productos;
+                $det_servicios = $orden->det_servicios;
+
+                foreach ($det_productos as $producto) {                    
+                    $productos = $producto->productos;
+                    foreach ($productos as $producto) {
+                        $producto->categoria;
+                    }
+                }
+                foreach ($det_servicios as $servicio) {                    
+                    $servicios = $servicio->servicios;
+                    foreach ($servicios as $servicio) {
+                        $servicio->tipo;
+                    }
+                }
+
+
+            }
+        }
+        
+
+        return $users;
+    });
+
+
+    Route::get('productos', function(){
+        $users = \App\Models\Producto::all();
+        return $users;
+    });
+
+    Route::get('servicios', function(){
+        $users = \App\Models\Servicio::all();
+        return $users;
+    });
+
+    Route::get('ordenes', function(){
+        $users = \App\Models\OrdenTrabajo::all();
+        return $users;
+    });
+
+    Route::get('detalles', 'PruebaController@index');
+
+
+
+});

@@ -12,6 +12,9 @@ class OrdenTrabajoTableSeeder extends Seeder
      */
     public function run()
     {
+
+
+
         $ordenes = [
             ['id_cliente' => 1, 
              'cliente_contacto' => '12345678',

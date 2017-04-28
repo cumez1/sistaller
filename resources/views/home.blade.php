@@ -29,7 +29,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Clientes</span>
-              <span class="info-box-number">100</span>
+              <span class="info-box-number">{{count($datos['clientesAll'])}}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -44,7 +44,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Productos</span>
-              <span class="info-box-number">100</span>
+              <span class="info-box-number">{{count($datos['productosAll'])}}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -62,7 +62,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Servicios</span>
-              <span class="info-box-number">90</span>
+              <span class="info-box-number">{{count($datos['servicios'])}}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -76,7 +76,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Ordenes</span>
-              <span class="info-box-number">10 <small>Actuales</small></span>
+              <span class="info-box-number">{{count($datos['ordenes'])}} <small>Ordenes</small></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -107,69 +107,31 @@
                 <table class="table no-margin">
                   <thead>
                   <tr>
-                    <th>Order ID</th>
-                    <th>Item</th>
-                    <th>Status</th>
-                    <th>Popularity</th>
+                    <th># Orden</th>
+                    <th>Cliente</th>
+                    <th>Estado</th>
+                    <th>Observaciones</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                    <td>Call of Duty IV</td>
-                    <td><span class="label label-success">Shipped</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                    <td>Samsung Smart TV</td>
-                    <td><span class="label label-warning">Pending</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                    <td>iPhone 6 Plus</td>
-                    <td><span class="label label-danger">Delivered</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                    <td>Samsung Smart TV</td>
-                    <td><span class="label label-info">Processing</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                    <td>Samsung Smart TV</td>
-                    <td><span class="label label-warning">Pending</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                    <td>iPhone 6 Plus</td>
-                    <td><span class="label label-danger">Delivered</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                    <td>Call of Duty IV</td>
-                    <td><span class="label label-success">Shipped</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                    </td>
-                  </tr>
+                  
+                    @foreach($datos['ordenes'] as $orden)
+                      <tr>
+                        <td>OR{{$orden->id_orden}}</td>
+                        @php
+                          $cliente = $orden->cliente;
+                        @endphp
+                        <td>{{$cliente->nombre}} {{$cliente->apellido}}</td>
+                        <td>
+                          @php
+                            echo $orden->estado;
+                          @endphp
+                        </td>
+                        <td>{{$orden->observaciones}}</td>
+                      </tr>
+                    @endforeach
+                    
+                  
                   </tbody>
                 </table>
               </div>
@@ -177,8 +139,8 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
-              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Nueva Orden de Trabajo</a>
+              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">Ver todos las ordenes</a>
             </div>
             <!-- /.box-footer -->
           </div>
@@ -201,69 +163,23 @@
                 <table class="table no-margin">
                   <thead>
                   <tr>
-                    <th>Order ID</th>
-                    <th>Item</th>
-                    <th>Status</th>
-                    <th>Popularity</th>
+                    <th>ID Cliente</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Telefono</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                    <td>Call of Duty IV</td>
-                    <td><span class="label label-success">Shipped</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                    <td>Samsung Smart TV</td>
-                    <td><span class="label label-warning">Pending</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                    <td>iPhone 6 Plus</td>
-                    <td><span class="label label-danger">Delivered</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                    <td>Samsung Smart TV</td>
-                    <td><span class="label label-info">Processing</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                    <td>Samsung Smart TV</td>
-                    <td><span class="label label-warning">Pending</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                    <td>iPhone 6 Plus</td>
-                    <td><span class="label label-danger">Delivered</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                    <td>Call of Duty IV</td>
-                    <td><span class="label label-success">Shipped</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                    </td>
-                  </tr>
+                    
+                    @foreach($datos['clientes'] as $cliente)
+                      <tr>
+                        <td>CLI{{$cliente->id_cliente}}</td>                        
+                        <td>{{$cliente->nombre}} {{$cliente->apellido}}</td>
+                        <td>{{$cliente->direccion}}</td>
+                        <td>{{$cliente->telefono}}</td>
+                      </tr>
+                    @endforeach
+
                   </tbody>
                 </table>
               </div>
@@ -271,8 +187,8 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
-              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Nuevo Cliente</a>
+              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">Ver Todos los clientes</a>
             </div>
             <!-- /.box-footer -->
           </div>
@@ -286,10 +202,15 @@
           <!-- SIDEBAR DERECHA INVENTARIOS -->
           <div class="info-box bg-yellow">
             <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-
+            @php
+              $inventario = 0;
+              foreach ($datos['productos'] as $producto) {
+                 $inventario += $producto->stock;
+              }
+            @endphp
             <div class="info-box-content">
               <span class="info-box-text">Inventario</span>
-              <span class="info-box-number">5,200</span>
+              <span class="info-box-number">{{$inventario}}</span>
 
               <div class="progress">
                 <div class="progress-bar" style="width: 50%"></div>
@@ -303,16 +224,35 @@
           <!-- /.info-box -->
           <div class="info-box bg-green">
             <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+            @php
+              $tProductos = 0;
+              $tServicios = 0;
+              foreach ($datos['ordenes'] as $orden) {
+                  $det_productos = $orden->det_productos;
+                  $det_servicios = $orden->det_servicios;
+
+                  foreach ($det_productos as $producto) {                    
+                      $tProductos += $producto->cantidad * $producto->precio;
+                      
+                  }
+                  foreach ($det_servicios as $servicio) {                    
+                      $tServicios += $servicio->cantidad * $servicio->precio;
+                  }
+              }
+
+              $tProductos = number_format($tProductos,2);
+              $tServicios = number_format($tServicios,2);
+            @endphp
 
             <div class="info-box-content">
-              <span class="info-box-text">Ventas al mes</span>
-              <span class="info-box-number">Q 100.00</span>
+              <span class="info-box-text">Ventas servicio</span>
+              <span class="info-box-number">Q {{$tServicios}}</span>
 
               <div class="progress">
                 <div class="progress-bar" style="width: 20%"></div>
               </div>
                   <span class="progress-description">
-                    20% Increase in 30 Days
+                    Ventas de servicios
                   </span>
             </div>
             <!-- /.info-box-content -->
@@ -322,14 +262,14 @@
             <span class="info-box-icon"><i class="ion ion-cash"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Ganancias al mes</span>
-              <span class="info-box-number">Q. 100.00</span>
+              <span class="info-box-text">Ventas productos</span>
+              <span class="info-box-number">Q {{$tProductos}}</span>
 
               <div class="progress">
                 <div class="progress-bar" style="width: 70%"></div>
               </div>
                   <span class="progress-description">
-                    70% Increase in 30 Days
+                    Ventas por productos
                   </span>
             </div>
             <!-- /.info-box-content -->
@@ -340,13 +280,13 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Clientes nuevos al mes</span>
-              <span class="info-box-number">6</span>
+              <span class="info-box-number">{{count($datos['clientesAll'])}}</span>
 
               <div class="progress">
                 <div class="progress-bar" style="width: 40%"></div>
               </div>
                   <span class="progress-description">
-                    40% Increase in 30 Days
+                    Clientes nuevos +
                   </span>
             </div>
             <!-- /.info-box-content -->
@@ -367,62 +307,38 @@
             <!-- /.box-header -->
             <div class="box-body">
               <ul class="products-list product-list-in-box">
-                <li class="item">
-                  <div class="product-img">
-                    <img src="dist/img/default-50x50.gif" alt="Product Image">
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">Samsung TV
-                      <span class="label label-warning pull-right">$1800</span></a>
-                        <span class="product-description">
-                          Samsung 32" 1080p 60Hz LED Smart HDTV.
-                        </span>
-                  </div>
-                </li>
-                <!-- /.item -->
-                <li class="item">
-                  <div class="product-img">
-                    <img src="dist/img/default-50x50.gif" alt="Product Image">
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">Bicycle
-                      <span class="label label-info pull-right">$700</span></a>
-                        <span class="product-description">
-                          26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-                        </span>
-                  </div>
-                </li>
-                <!-- /.item -->
-                <li class="item">
-                  <div class="product-img">
-                    <img src="dist/img/default-50x50.gif" alt="Product Image">
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">Xbox One <span class="label label-danger pull-right">$350</span></a>
-                        <span class="product-description">
-                          Xbox One Console Bundle with Halo Master Chief Collection.
-                        </span>
-                  </div>
-                </li>
-                <!-- /.item -->
-                <li class="item">
-                  <div class="product-img">
-                    <img src="dist/img/default-50x50.gif" alt="Product Image">
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">PlayStation 4
-                      <span class="label label-success pull-right">$399</span></a>
-                        <span class="product-description">
-                          PlayStation 4 500GB Console (PS4)
-                        </span>
-                  </div>
-                </li>
-                <!-- /.item -->
+                @foreach($datos['productos'] as $producto)
+                  <li class="item">
+                    <div class="product-img">
+                      <img src="{{ asset('/img/default-50x50.gif') }}" alt="Imagen del producto">
+                    </div>
+                    <div class="product-info">
+                      <a href="javascript:void(0)" class="product-title">{{$producto->nombre}}
+                        @php
+                          
+                          if ($producto->precio <= 100) {
+                              echo '<span class="label label-danger pull-right">Q '.$producto->precio.'</span>';
+                          }elseif ($producto->precio > 100 && $producto->precio <= 200) {
+                              echo '<span class="label label-warning pull-right">Q '.$producto->precio.'</span>';
+                          }elseif ($producto->precio > 200 && $producto->precio <= 300) {
+                              echo '<span class="label label-info pull-right">Q '.$producto->precio.'</span>';
+                          }elseif ($producto->precio > 300 ) {
+                              echo '<span class="label label-success pull-right">Q '.$producto->precio.'</span>';
+                          }
+                        @endphp
+                      </a>
+                          <span class="product-description">
+                            {{$producto->descripcion}}
+                          </span>
+                    </div>
+                  </li>
+                @endforeach
+
               </ul>
             </div>
             <!-- /.box-body -->
             <div class="box-footer text-center">
-              <a href="javascript:void(0)" class="uppercase">View All Products</a>
+              <a href="javascript:void(0)" class="uppercase">Ver todo los productos</a>
             </div>
             <!-- /.box-footer -->
           </div>
