@@ -68,7 +68,7 @@ Route::group(['prefix' => 'test/'], function () {
         return $users;
     });
 
-    Route::get('detalles', 'PruebaController@index');
+    Route::get('detalles', 'DashboardController@index');
 
 
 
