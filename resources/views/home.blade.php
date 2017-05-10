@@ -7,7 +7,7 @@
 	<!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        QUE ONDA RICHARD
+        Dashboard
         <small>SistemasGT</small>
       </h1>
       <ol class="breadcrumb">
