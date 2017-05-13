@@ -37,9 +37,9 @@
 
             <li class="active"><a href="{{ route('cliente.index') }}"><i class='fa fa-users'></i> <span>Clientes</span></a></li>
 
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-sitemap'></i> <span>Categoria Productos</span></a></li>
+            <li class="active"><a href="{{ route('categoria.index') }}"><i class='fa fa-sitemap'></i> <span>Categoria Productos</span></a></li>
 
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa fa-barcode'></i> <span>Productos</span></a></li>
+            <li class="active"><a href="{{ route('producto.index') }}"><i class='fa fa fa-barcode'></i> <span>Productos</span></a></li>
 
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-cog'></i> <span>Categoria Serivicios</span></a></li>
 

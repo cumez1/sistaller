@@ -7,12 +7,12 @@
 	<!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Cliente
+        Categorias de Productos
         <small>SistemasGT</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Clientes</li>
+        <li class="active">Categoria de Productos</li>
       </ol>
     </section>
 
@@ -24,15 +24,11 @@
     <div class="table-responsive text-center">
         <table class="table table-borderless"  id="clientes">
             <thead>
-            
                 <tr>
                     <th>#</th>
-                    <th>Nit</th>
                     <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Dirección</th>
-                    <th>Fecha Nacimiento</th>
-                    <th>Telefono</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
                 </tr>
             </thead>                    
         </table>
@@ -49,15 +45,12 @@
             $('#clientes').DataTable({
                 "processing": true,
                 "serverSide": true,
-                "ajax": "{{ route('cliente.listado') }}",
+                "ajax": "{{ route('categoria.listado') }}",
                 "columns" : [
-                    {data: 'id_cliente'},
-                    {data: 'nit'},
+                    {data: 'id_categoria'},
                     {data: 'nombre'},
-                    {data: 'apellido'},
-                    {data: 'direccion'},
-                    {data: 'fecha_nac'},
-                    {data: 'telefono'}
+                    {data: 'descripcion'},
+                    {data: 'activo'}
                 ] 
             });
         });  

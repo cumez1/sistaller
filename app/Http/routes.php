@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::get('cliente/index', 'ClienteController@index')->name('cliente.index');
 Route::get('cliente/listado', 'ClienteController@listado')->name('cliente.listado');
 
+Route::get('categoria/index', 'CategoriaController@index')->name('categoria.index');
+Route::get('categoria/listado', 'CategoriaController@listado')->name('categoria.listado');
 
 
 Route::group(['prefix' => 'test/'], function () {

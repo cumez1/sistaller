@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Models\Cliente;
+use App\Models\Categoria;
 use Yajra\Datatables\Facades\Datatables;
 
-class ClienteController extends Controller
+class CategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +17,11 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        
-        return view('cliente.index');
+        return view('categoria.index');
     }
 
     public function listado(){
-        return Datatables::eloquent(Cliente::query())->make(true);
+        return Datatables::eloquent(Categoria::query())->make(true);
     }
 
     /**

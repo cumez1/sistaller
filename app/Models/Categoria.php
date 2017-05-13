@@ -18,4 +18,12 @@ class Categoria extends Model
         return $this->hasMany(Producto::class,'id_categoria', 'id_categoria');
     }
 
+    public function getActivoAttribute($value)
+    {
+        if ($value == 0) {
+            return '<span class="label label-success pull-right">Activo</span>';
+        }else{
+            return '<span class="label label-danger pull-right">Inactivo</span>';
+        }
+    }
 }
