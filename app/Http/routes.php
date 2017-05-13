@@ -27,6 +27,9 @@ Route::get('producto/listado', 'ProductoController@listado')->name('producto.lis
 Route::get('tiposervicio/index', 'TipoServicioController@index')->name('tiposervicio.index');
 Route::get('tiposervicio/listado', 'TipoServicioController@listado')->name('tiposervicio.listado');
 
+Route::get('servicio/index', 'ServicioController@index')->name('servicio.index');
+Route::get('servicio/listado', 'ServicioController@listado')->name('servicio.listado');
+
 
 Route::group(['prefix' => 'test/'], function () {
     Route::get('usuarios', function(){
