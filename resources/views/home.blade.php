@@ -7,7 +7,7 @@
 	<!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Hola Mundo
+        Dashboard
         <small>SistemasGT</small>
       </h1>
       <ol class="breadcrumb">

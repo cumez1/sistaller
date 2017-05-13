@@ -54,5 +54,7 @@ desired effect
     @include('layouts.partials.scripts')
 @show
 
+@yield('script_page')
+
 </body>
 </html>

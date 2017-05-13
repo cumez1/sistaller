@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('cliente/index', 'ClienteController@index')->name('cliente.index');
+Route::get('cliente/listado', 'ClienteController@listado')->name('cliente.listado');
+
 
 
 Route::group(['prefix' => 'test/'], function () {
@@ -69,7 +72,4 @@ Route::group(['prefix' => 'test/'], function () {
     });
 
     Route::get('detalles', 'DashboardController@index');
-
-
-
 });

@@ -35,7 +35,7 @@
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-tachometer'></i> <span>Dashboard</span></a></li>
 
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-users'></i> <span>Clientes</span></a></li>
+            <li class="active"><a href="{{ route('cliente.index') }}"><i class='fa fa-users'></i> <span>Clientes</span></a></li>
 
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-sitemap'></i> <span>Categoria Productos</span></a></li>
 
