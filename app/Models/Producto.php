@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Categoria;
 
 class Producto extends Model
 {
@@ -16,6 +17,23 @@ class Producto extends Model
     public function categoria()
     {
         return $this->belongsTo(Categoria::class,'id_categoria', 'id_categoria');
+    }
+
+
+    public function getIdCategoriaAttribute($value)
+    {
+        $categoria = Categoria::select('nombre')->where('id_categoria','=',$value)->first();
+
+        return $categoria->nombre;
+    }
+
+    public function getActivoAttribute($value)
+    {
+        if ($value == 1) {
+            return '<span class="label label-success pull-right">Activo</span>';
+        }else{
+            return '<span class="label label-danger pull-right">Inactivo</span>';
+        }
     }
 
     
