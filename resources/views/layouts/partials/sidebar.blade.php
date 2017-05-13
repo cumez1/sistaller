@@ -34,6 +34,8 @@
             <li class="header">OPCIONES</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-tachometer'></i> <span>Dashboard</span></a></li>
+            
+            <li class="active"><a href="{{ route('usuario.index') }}"><i class='fa fa-user'></i> <span>Usuarios</span></a></li>
 
             <li class="active"><a href="{{ route('cliente.index') }}"><i class='fa fa-users'></i> <span>Clientes</span></a></li>
 
@@ -44,12 +46,12 @@
             <li class="active"><a href="{{ route('tiposervicio.index') }}"><i class='fa fa-cog'></i> <span>Categoria Serivicios</span></a></li>
 
             <li class="active"><a href="{{ route('servicio.index') }}"><i class='fa fa-cogs'></i> <span>Servicios</span></a></li>
-
+            
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-shopping-cart'></i> <span>Ordenes de Trabajo</span></a></li>
 
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-file-pdf-o'></i> <span>Reportes</span></a></li>
 
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-user'></i> <span>Usuarios</span></a></li>
+
             
         </ul><!-- /.sidebar-menu -->
     </section>

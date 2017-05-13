@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::get('cliente/index', 'ClienteController@index')->name('cliente.index');
 Route::get('cliente/listado', 'ClienteController@listado')->name('cliente.listado');
+Route::get('cliente/crear', 'ClienteController@create')->name('cliente.crear');
 
 Route::get('categoria/index', 'CategoriaController@index')->name('categoria.index');
 Route::get('categoria/listado', 'CategoriaController@listado')->name('categoria.listado');
@@ -30,6 +31,10 @@ Route::get('tiposervicio/listado', 'TipoServicioController@listado')->name('tipo
 Route::get('servicio/index', 'ServicioController@index')->name('servicio.index');
 Route::get('servicio/listado', 'ServicioController@listado')->name('servicio.listado');
 
+Route::get('usuario/index', 'UserController@index')->name('usuario.index');
+Route::get('usuario/listado', 'UserController@listado')->name('usuario.listado');
+Route::get('usuario/crear', 'UserController@create')->name('usuario.crear');
+Route::post('usuario/guardar', 'UserController@store')->name('usuario.guardar');
 
 Route::group(['prefix' => 'test/'], function () {
     Route::get('usuarios', function(){

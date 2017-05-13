@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Models\Cliente;
+use App\User;
 use Yajra\Datatables\Facades\Datatables;
 
-class ClienteController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +18,11 @@ class ClienteController extends Controller
     public function index()
     {
         
-        return view('cliente.index');
+        return view('usuario.index');
     }
 
     public function listado(){
-        return Datatables::eloquent(Cliente::query())->make(true);
+        return Datatables::eloquent(User::query())->make(true);
     }
 
     /**
@@ -32,7 +32,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        return view('cliente.create');
+        return view('usuario.create');
     }
 
     /**
@@ -43,7 +43,20 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:6',
+            'terms' => 'required',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        return view('usuario.index');
     }
 
     /**
