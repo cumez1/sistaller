@@ -41,7 +41,7 @@
 
             <li class="active"><a href="{{ route('producto.index') }}"><i class='fa fa fa-barcode'></i> <span>Productos</span></a></li>
 
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-cog'></i> <span>Categoria Serivicios</span></a></li>
+            <li class="active"><a href="{{ route('tiposervicio.index') }}"><i class='fa fa-cog'></i> <span>Categoria Serivicios</span></a></li>
 
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-cogs'></i> <span>Servicios</span></a></li>
 

@@ -21,8 +21,11 @@ Route::get('cliente/listado', 'ClienteController@listado')->name('cliente.listad
 Route::get('categoria/index', 'CategoriaController@index')->name('categoria.index');
 Route::get('categoria/listado', 'CategoriaController@listado')->name('categoria.listado');
 
-Route::get('prducto/index', 'ProductoController@index')->name('producto.index');
-Route::get('prducto/listado', 'ProductoController@listado')->name('producto.listado');
+Route::get('producto/index', 'ProductoController@index')->name('producto.index');
+Route::get('producto/listado', 'ProductoController@listado')->name('producto.listado');
+
+Route::get('tiposervicio/index', 'TipoServicioController@index')->name('tiposervicio.index');
+Route::get('tiposervicio/listado', 'TipoServicioController@listado')->name('tiposervicio.listado');
 
 
 Route::group(['prefix' => 'test/'], function () {

@@ -18,6 +18,14 @@ class TipoServicio extends Model
         return $this->hasMany(Servicio::class,'id_tiposervicio', 'id_tiposervicio');
     }
 
+    public function getActivoAttribute($value)
+    {
+        if ($value == 0) {
+            return '<span class="label label-success pull-right">Activo</span>';
+        }else{
+            return '<span class="label label-danger pull-right">Inactivo</span>';
+        }
+    }
 
 
 }
