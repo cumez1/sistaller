@@ -60,9 +60,9 @@
                 "columns" : [
                     {data: 'id_cliente'},
                     {data: 'nit'},
-                    {data: 'nombre'},
-                    {data: 'apellido'},
-                    {data: 'direccion'},
+                    {data: 'nombre',className: "text-left" },
+                    {data: 'apellido',className: "text-left" },
+                    {data: 'direccion',className: "text-left" },
                     {data: 'fecha_nac'},
                     {data: 'telefono'}
                 ] 

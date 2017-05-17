@@ -37,6 +37,7 @@
                     <th>Descripción</th>
                     <th>Categoria</th>
                     <th>Marca</th>
+                    <th>Costo</th>
                     <th>Precio</th>
                     <th>Stock</th>
                     <th>Estado</th>
@@ -59,11 +60,12 @@
                 "ajax": "{{ route('producto.listado') }}",
                 "columns" : [
                     {data: 'id_producto'},
-                    {data: 'nombre'},
-                    {data: 'descripcion'},
-                    {data: 'id_categoria'},
-                    {data: 'marca'},
-                    {data: 'precio'},
+                    {data: 'nombre',className: "text-left" },
+                    {data: 'descripcion',className: "text-left" },
+                    {data: 'id_categoria',className: "text-left" },
+                    {data: 'marca',className: "text-left" },
+                    {data: 'costo',className: "text-left" },
+                    {data: 'precio',className: "text-left" },
                     {data: 'stock'},
                     {data: 'activo'}
 

@@ -17,6 +17,7 @@ class CreateServiciosTable extends Migration
             $table->integer('id_tiposervicio')->unsigned();
             $table->string('nombre');
             $table->string('descripcion');
+            $table->decimal('costo', 12, 2);
             $table->decimal('precio', 12, 2);
             $table->integer('activo');
 

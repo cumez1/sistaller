@@ -55,8 +55,8 @@
                 "ajax": "{{ route('categoria.listado') }}",
                 "columns" : [
                     {data: 'id_categoria'},
-                    {data: 'nombre'},
-                    {data: 'descripcion'},
+                    {data: 'nombre',className: "text-left" },
+                    {data: 'descripcion',className: "text-left" },
                     {data: 'activo'}
                 ] 
             });

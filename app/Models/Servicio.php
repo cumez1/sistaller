@@ -11,7 +11,7 @@ class Servicio extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['id_tiposervicio','nombre','descripcion','precio','activo'];
+    protected $fillable = ['id_tiposervicio','nombre','descripcion','costo','precio','activo'];
 
     public function tipo()
     {

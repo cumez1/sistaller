@@ -19,6 +19,7 @@ class CreateProductosTable extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->string('marca');
+            $table->decimal('costo', 12, 2);
             $table->decimal('precio', 12, 2);
             $table->integer('stock');
             $table->integer('activo');

@@ -55,8 +55,8 @@
                 "ajax": "{{ route('tiposervicio.listado') }}",
                 "columns" : [
                     {data: 'id_tiposervicio'},
-                    {data: 'nombre'},
-                    {data: 'descripcion'},
+                    {data: 'nombre',className: "text-left" },
+                    {data: 'descripcion',className: "text-left" },
                     {data: 'activo'}
                 ] 
             });

@@ -36,6 +36,7 @@
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Tipo de Servicio</th>
+                    <th>Costo</th>
                     <th>Precio</th>
                     <th>Estado</th>
                 </tr>
@@ -57,9 +58,10 @@
                 "ajax": "{{ route('servicio.listado') }}",
                 "columns" : [
                     {data: 'id_servicio'},
-                    {data: 'nombre'},
-                    {data: 'descripcion'},
-                    {data: 'id_tiposervicio'},
+                    {data: 'nombre',className: "text-left" },
+                    {data: 'descripcion',className: "text-left" },
+                    {data: 'id_tiposervicio',className: "text-left" },
+                    {data: 'costo'},
                     {data: 'precio'},
                     {data: 'activo'}
                 ] 
