@@ -36,6 +36,29 @@ Route::get('usuario/listado', 'UserController@listado')->name('usuario.listado')
 Route::get('usuario/crear', 'UserController@create')->name('usuario.crear');
 Route::post('usuario/guardar', 'UserController@store')->name('usuario.guardar');
 
+
+
+
+Route::group(['prefix' => 'ordenes'], function(){
+
+
+    Route::get('/','OrdenTrabajoController@index')->name('orden.index');
+    Route::get('/create','OrdenTrabajoController@create')->name('orden.create');
+    Route::post('/recuperar','OrdenTrabajoController@recuperarRegistros');
+    Route::post('/recuperarCliente','OrdenTrabajoController@recuperarCliente');
+    Route::get('/guardar', 'OrdenTrabajoController@guardar')->name('orden.guardar');
+    Route::get('/vaciar', 'OrdenTrabajoController@vaciar')->name('orden.vaciar'); 
+    Route::get('/show/{id}', 'OrdenTrabajoController@show')->name('orden.show');
+    Route::post('/agregar/{producto}', 'OrdenTrabajoController@agregar')->name('orden.agregar');       
+    Route::post('/quitar/{producto}', 'OrdenTrabajoController@quitar');   
+    Route::post('/listadoAjax', 'OrdenTrabajoController@listadoAjax'); 
+    Route::get('/listadoAjax', 'OrdenTrabajoController@listadoAjax');    
+    
+});
+
+
+
+
 Route::group(['prefix' => 'test/'], function () {
     Route::get('usuarios', function(){
         $users = \App\User::all();
