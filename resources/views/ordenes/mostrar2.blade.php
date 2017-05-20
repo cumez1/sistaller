@@ -1,45 +1,33 @@
+
+
 @extends('layouts.app')
 
-@section('htmlheader_title','Producto')
+@section('css-page')
+        <style >
+        .invoice-title h2, .invoice-title h3 {
+            display: inline-block;
+        }
 
+        .table > tbody > tr > .no-line {
+            border-top: none;
+        }
+
+        .table > thead > tr > .no-line {
+            border-bottom: none;
+        }
+
+        .table > tbody > tr > .thick-line {
+            border-top: 2px solid;
+        }
+    </style> 
+@endsection
 
 @section('main-content')
-<style >
-    .invoice-title h2, .invoice-title h3 {
-        display: inline-block;
-    }
 
-    .table > tbody > tr > .no-line {
-        border-top: none;
-    }
-
-    .table > thead > tr > .no-line {
-        border-bottom: none;
-    }
-
-    .table > tbody > tr > .thick-line {
-        border-top: 2px solid;
-    }
-</style> 
-
-	<!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Productos
-        <small>SistemasGT</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Productos</li>
-      </ol>
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
+    <div class="row">
         <div class="col-xs-12">
             <div class="invoice-title">
-                <h2>FACTURA</h2><h3 class="pull-right">ORDEN # {{$orden[0]->id_orden}}</h3>
+                <h2>FACTURA</h2><h3 class="pull-right">ORDEN # {{$orden[0]->noorden}}</h3>
             </div>
             <hr>
             <div class="row">
@@ -137,14 +125,8 @@
             </div>
         </div>
     </div>
-
-    </section>
-    <!-- /.content -->
-
-<!-- Scripts -->
-  @section('script_page')
-  
-  @endsection
+        
 
 @endsection
+
 

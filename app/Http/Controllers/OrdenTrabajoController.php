@@ -44,25 +44,16 @@ class OrdenTrabajoController extends Controller
     public function show($id)
     {
 
-        $orden = DB::table('ordenes as o')
-            ->join('clientes as c', 'o.id_cliente', '=', 'c.id_cliente')
-            ->join('ordenes_trabajo_prod as dp', 'o.id_orden', '=', 'dp.id_orden')
-            ->join('productos as p', 'dp.id_producto', '=', 'p.id_producto')
-            ->join('ordenes_trabajo_serv as ds', 'o.id_orden', '=', 'ds.id_orden')
-            ->join('servicios as s', 'ds.id_servicio', '=', 'ds.id_servicio')
-
-            ->select('o.id_orden as noorden',
-                     'o.fecha_registro',
-                     'c.*', 
-                     'dp.precio',
-                     'dp.cantidad',
-                     'p.id_producto',
-                     'p.nombre as nombreproducto',
-                     'ds.precio',
-                     's.id_servicio',
-                     's.nombre as nombreservicio')
-            ->where('o.id_orden', $id)
-            ->get();
+        $sql = 'SELECT * FROM ordenes as o 
+                LEFT JOIN clientes as c ON o.id_cliente = c.id_cliente 
+                LEFT JOIN ordenes_trabajo_prod op ON  o.id_orden = op.id_orden
+                LEFT JOIN productos p ON op.id_producto = p.id_producto
+                LEFT JOIN ordenes_trabajo_serv os ON o.id_orden = os.id_orden
+                LEFT JOIN servicios s ON os.id_servicio = s.id_servicio
+                WHERE o.id_orden= '.$id;
+        
+        $orden = DB::select($sql);
+        
 
         $total = 0;
 
