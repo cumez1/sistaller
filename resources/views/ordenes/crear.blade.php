@@ -161,50 +161,8 @@
                         <h4><i class='glyphicon glyphicon-edit'></i> Nueva Venta</h4>
                     </div>
                     <div class="panel-body">
-                    
-                        <form class="form-horizontal" role="form" id="datos_cotizacion">
-                            {{ csrf_field() }}
-
-                            <div class="form-group row">
-                                <label  class="col-md-3 control-label">Ingrese NIT</label>
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control input-sm" id="nit" placeholder="Ingresa el nit del cliente (presione enter)" required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label  class="col-md-3 control-label">Nombre Completo:</label>
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control input-sm" id="nombre" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label  class="col-md-3 control-label">Dirección:</label>
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control input-sm" id="direccion" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label  class="col-md-3 control-label">Email:</label>
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control input-sm" id="email" disabled>
-                                </div>
-                            </div>
-                          
-                            <div class="row">
-                                <label  class="col-md-3 control-label"></label>
-                                <div class="col-md-5">
-                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
-                                        <span class="glyphicon glyphicon-plus"></span> Agregar producto
-                                        </button>
-                                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalServicio">
-                                        <span class="glyphicon glyphicon-plus"></span> Agregar Servicio
-                                        </button>
-                                        <button type="button" onclick="window.print()" class="btn btn-default">
-                                        <span class="glyphicon glyphicon-print"></span> Imprimir
-                                        </button>
-                                </div>
-                            </div>  
-                        </form> 
+                        @include('ordenes.formdatos')
+                        
                         <div class="row">
                             <div id="resultados" class="col-md-12" style="margin-top:10px">
                                 <table class="table" id="detalle">
@@ -252,7 +210,7 @@
                             <div class="row">
                                 <label  class="col-md-3 control-label"></label>
                                 <div class="col-md-5">
-                                        <a href="{{ route('orden.guardar' )}}" class="btn btn-success">
+                                        <a id="btnGuardar" class="btn btn-success">
                                         <i class="fa fa-floppy-o" aria-hidden="true"> Guardar Orden</i>
                                         </a>
                                         <a href="{{ route('orden.vaciar' )}}" class="btn btn-danger">
@@ -275,7 +233,9 @@
 <!-- Scripts -->
   @section('script_page')
         
-
+        
+    <link href="{{ asset('/css/bootstrap-datepicker3.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('/js/bootstrap-datepicker.min.js') }}"></script>
     <script type="text/javascript">
 
         $(document).ready( function () {      
@@ -284,7 +244,18 @@
             recupearCliente();
             recupearRegistros();
             verificarDespues();
+
+            
+
         });
+
+        $('#fecha_entrega').datepicker({
+            format: 'dd/mm/yyyy',
+            startDate: '0d',
+            autoclose: true,
+            toggleActive: true
+        });
+
 
         function listarProductos(){
 
@@ -369,13 +340,13 @@
                     $("#nit").val(data.nit);
                     $("#nombre").val(data.nombre +" "+data.apellido);
                     $("#direccion").val(data.direccion );
-                    $("#email").val(data.telefono );
+                    $("#telefono").val(data.telefono );
                 },  
                 error: function(data){
                     $("#nit").val('');
                     $("#nombre").val('');
                     $("#direccion").val('');
-                    $("#email").val('');
+                    $("#telefono").val('');
                 }          
             });
         }
@@ -490,6 +461,9 @@
             });
         };
 
+        href="{{ route('orden.guardar' )}}"
+
+
         function agregarServ(event, id_servicio){
             event.preventDefault();
             var rowCount = $('#detalle tr').length;
@@ -552,13 +526,14 @@
                         $("#nit").val(data.nit);
                         $("#nombre").val(data.nombre +" "+data.apellido);
                         $("#direccion").val(data.direccion );
-                        $("#email").val(data.telefono );
+                        $("#telefono").val(data.telefono );
                     },  
                     error: function(data){
+                        error(1);
                         $("#nit").val('');
                         $("#nombre").val('');
                         $("#direccion").val('');
-                        $("#email").val('');
+                        $("#telefono").val('');
                     }          
                 });
                 
@@ -567,6 +542,37 @@
 
         $("#btnBuscar").click(function () {            
             $('#listadoProductos').DataTable().ajax.reload();
+        });
+
+        $("#btnGuardar").click(function (event) {            
+            event.preventDefault();
+            var URL ="{{ route('orden.guardar' )}}";
+            var token = $("input[name='_token']").val();
+            var datos = $("#datos_orden" ).serializeArray();
+
+            $.ajax({
+                type: "POST",
+                url: URL,
+                dataType : 'json',
+                headers: {'X-CSRF-TOKEN': token},
+                data: datos,
+                success: function(data){
+                    if(data.status==200){
+                        var url2 = "{{ url('ordenes') }}";
+                        window.location.href = url2;
+                            
+                    }else if(data.status==422){
+                        verificarDespues();
+                    }
+                    
+                },  
+                error: function(data){
+                    
+                }          
+            });
+
+
+
         });
 
    </script>

@@ -46,7 +46,7 @@ Route::group(['prefix' => 'ordenes'], function(){
     Route::get('/create','OrdenTrabajoController@create')->name('orden.create');
     Route::post('/recuperar','OrdenTrabajoController@recuperarRegistros')->name('orden.recupear');
     Route::post('/recuperarCliente','OrdenTrabajoController@recuperarCliente')->name('orden.cliente');
-    Route::get('/guardar', 'OrdenTrabajoController@guardar')->name('orden.guardar');
+    Route::post('/guardar', 'OrdenTrabajoController@guardar')->name('orden.guardar');
     Route::get('/vaciar', 'OrdenTrabajoController@vaciar')->name('orden.vaciar'); 
     Route::get('/show/{id}', 'OrdenTrabajoController@show')->name('orden.show');
     Route::post('/agregar', 'OrdenTrabajoController@agregar')->name('orden.agregar');

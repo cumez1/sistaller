@@ -19,6 +19,7 @@
     <link href="{{ asset('/plugins/iCheck/square/blue.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/sweetalert/sweetalert.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/dataTables.jqueryui.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/toastr.css') }}" rel="stylesheet">
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

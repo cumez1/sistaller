@@ -19,15 +19,15 @@ class CreateOrdenTrabajosTable extends Migration
 
             $table->date('fecha_registro');
             $table->date('fecha_entrega');
-            $table->string('tipo_vehiculo');
-            $table->string('vehiculo');
-            $table->string('modelo');
-            $table->string('placa');
+            $table->string('tipo_vehiculo')->nullable();
+            $table->string('vehiculo')->nullable();
+            $table->string('modelo')->nullable();
+            $table->string('placa')->nullable();
 
             $table->string('usuario_registra');
-            $table->string('usuario_responsable');
+            $table->string('usuario_responsable')->nullable();
            
-            $table->longText('observaciones');
+            $table->longText('observaciones')->nullable();
             $table->integer('estado');
             $table->foreign('id_cliente')
                   ->references('id_cliente')

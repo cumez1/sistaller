@@ -9,9 +9,11 @@
 
 <script src="{{ asset('/sweetalert/sweetalert.min.js') }}"></script>
 
-<script src="{{ asset('js/datatables.min.js') }}"></script>
+<script src="{{ asset('/js/datatables.min.js') }}"></script>
 
-<script src="{{ asset('js/blockUI.js') }}"></script>
+<script src="{{ asset('/js/blockUI.js') }}"></script>
+
+<script src="{{ asset('/js/toastr.min.js') }}"></script>
 
 
 @include('sweet::alert')

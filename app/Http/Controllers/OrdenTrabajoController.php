@@ -283,8 +283,29 @@ class OrdenTrabajoController extends Controller
         return $tabla; 
     }
 
-    public function guardar(){
-        
+    public function guardar(Request $request){
+
+       /*
+
+        $table->increments('id_orden');
+            $table->integer('id_cliente')->unsigned();
+            $table->string('cliente_contacto');
+
+            $table->date('fecha_registro');
+            $table->date('fecha_entrega');
+            $table->string('tipo_vehiculo')->nullable();
+            $table->string('vehiculo')->nullable();
+            $table->string('modelo')->nullable();
+            $table->string('placa')->nullable();
+
+            $table->string('usuario_registra');
+            $table->string('usuario_responsable')->nullable();
+           
+            $table->longText('observaciones')->nullable();
+            $table->integer('estado');
+
+    */
+
         $carrito = Session::get('carrito');
 
         $orden = new OrdenTrabajo();
@@ -295,32 +316,35 @@ class OrdenTrabajoController extends Controller
 
         if($carrito['nit'] == ''){
             session()->flash('vacioc', 'Por favor seleccione un cliente');
-            return redirect()->back();
+            $ajaxData['status']= 422;        
+
+            return $ajaxData;
         }
 
         if($item_total < 1){
             session()->flash('vaciop', 'Por favor ingrese un producto para completar la compra');
-            return redirect()->back();
-        }
+            $ajaxData['status']= 422;        
 
+            return $ajaxData;
+        }
 
 
         try {
             DB::beginTransaction();
 
-            $orden->id_cliente = $carrito['nit'];
-            $orden->cliente_contacto = '12345678';
+            $orden->id_cliente = $carrito['nit'];        
             $orden->fecha_registro = Carbon::now();
-            $orden->fecha_entrega = Carbon::now();
-            $orden->tipo_vehiculo = 'Tipo de Vehiculo';
-            $orden->vehiculo ='Vehiculo';
-            $orden->modelo = 'Modelo';
+            $orden->fecha_entrega = $request->fecha_entrega;
+
+            $orden->cliente_contacto = $request->telefono;
+            $orden->tipo_vehiculo = $request->tipovehiculo;
+            $orden->vehiculo = $request->vehiculo;
+            $orden->modelo = $request->placas;
+            $orden->observaciones = $request->observaciones;
+            $orden->usuario_responsable = $request->responsable;
 
             $user = Auth::user();
-
             $orden->usuario_registra = $user->name;
-            $orden->observaciones = 'Observaciones';
-            $orden->usuario_responsable = 'Responsable';
             $orden->estado = 0;
             $orden->save();
 
@@ -367,17 +391,19 @@ class OrdenTrabajoController extends Controller
             return false;
         }
 
-        $this->vaciar();
-        
+
         session()->flash('exitoso', 'Se ha registrado con exito la La Factura No. '.$num_orden);
 
-        return redirect()->route('orden.index');
+        $this->vaciar();
+        $ajaxData['status']= 200;        
+
+        return $ajaxData;
     }
 
     public function vaciar()
     {
        Session::put('carrito', array('nit' => '','productos' => array(),'servicios' => array()));
-       return redirect()->route('orden.index');
+       return view('ordenes.index');
     }
 
     public function getAll($columna, $criterio, $orden){
