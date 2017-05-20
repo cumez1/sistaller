@@ -43,28 +43,60 @@ class OrdenTrabajoController extends Controller
 
     public function show($id)
     {
+        
 
-        $sql = 'SELECT * FROM ordenes as o 
-                LEFT JOIN clientes as c ON o.id_cliente = c.id_cliente 
-                LEFT JOIN ordenes_trabajo_prod op ON  o.id_orden = op.id_orden
-                LEFT JOIN productos p ON op.id_producto = p.id_producto
+        $orden = DB::table('ordenes')->where('id_orden','=',$id)->first();
+
+
+        $sql = 'SELECT c.*,o.id_orden FROM ordenes as o 
+                INNER JOIN clientes as c ON o.id_cliente = c.id_cliente
+                WHERE o.id_orden= '.$id;
+        $cliente = DB::select($sql);
+        $cliente = $cliente[0];
+
+        $sql = 'SELECT  op.id_producto,
+                        nombre,
+                        op.precio,
+                        cantidad,
+                        0 as subtotal FROM ordenes as o 
+                INNER JOIN ordenes_trabajo_prod as op ON  o.id_orden = op.id_orden
+                INNER JOIN productos as p ON op.id_producto = p.id_producto
+                WHERE o.id_orden= '.$id;
+
+        $productos = DB::select($sql);
+
+
+        $sql = 'SELECT  os.id_servicio,
+                        nombre,
+                        os.precio,
+                        cantidad,
+                        0 as subtotal FROM ordenes as o 
                 LEFT JOIN ordenes_trabajo_serv os ON o.id_orden = os.id_orden
                 LEFT JOIN servicios s ON os.id_servicio = s.id_servicio
                 WHERE o.id_orden= '.$id;
         
-        $orden = DB::select($sql);
-        
+        $servicios = DB::select($sql);
 
         $total = 0;
 
-        foreach ($orden as $item) {
-            $total += ($item->cantidad * $item->precio);
-            $total += ($item->precio);
+        foreach ($productos as $key => $value) {
+            
+            $subtotal = ($productos[$key]->cantidad * $productos[$key]->precio);
+            $productos[$key]->subtotal = $subtotal;
+            $total += $subtotal;
            
         }
+        foreach ($servicios as $key => $value) {
+            
+            $subtotal = ($servicios[$key]->cantidad * $servicios[$key]->precio);
+            $servicios[$key]->subtotal = $subtotal;
+            $total += $subtotal;
+           
+        }
+        
         $now = Carbon::now()->format('d/m/Y H:i:s');
        
-        return view('ordenes.mostrar', compact('orden','total','now'));
+        return view('ordenes.mostrar', compact('orden','cliente','productos','total','servicios','now'));
     }
 
 

@@ -39,25 +39,47 @@
         <div class="row">
         <div class="col-xs-12">
             <div class="invoice-title">
-                <h2>FACTURA</h2><h3 class="pull-right">ORDEN # {{$orden[0]->id_orden}}</h3>
+                <h2>SISTEMAS GT</h2><h3 class="pull-right">ORDEN # {{$orden->id_orden}}</h3>
             </div>
             <hr>
             <div class="row">
                 <div class="col-xs-6">
                     <address>
                     <strong>Orden de Trabjao:</strong><br>
-                        {{$orden[0]->nombre}} {{$orden[0]->apellido}}<br>
-                        {{$orden[0]->direccion}}
-                        {{$orden[0]->telefono}}
+                        NIT:{{$cliente->nit}}<br>
+                        {{$cliente->nombre}} {{$cliente->apellido}}<br>
+                        {{$cliente->direccion}}
+                        {{$cliente->telefono}}
                     </address>
                 </div>
                 <div class="col-xs-6 text-right">
                     <address>
                     <strong>Enviado a:</strong><br>
-                        {{$orden[0]->nombre}} {{$orden[0]->apellido}}<br>
-                        {{$orden[0]->direccion}}<br>
-                        {{$orden[0]->direccion}}<br>
-                        {{$orden[0]->telefono}}
+                        {{$cliente->nombre}} {{$cliente->apellido}}<br>
+                        {{$cliente->direccion}}
+                        {{$cliente->telefono}}
+                    </address>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <address>
+                    <strong>Detalles del Vehículo:</strong><br>
+                        Cliente contacto:<strong> <strong>{{$cliente->nombre}} {{$cliente->apellido}}</strong><br>
+                        Tipo de vehículo:<strong> {{$orden->tipo_vehiculo}}</strong><br>
+                        Modelo:<strong> {{$orden->vehiculo}}</strong><br>
+                        Placa:<strong> {{$orden->modelo}}</strong><br>
+                        Observaciones:<strong> {{$orden->observaciones}}</strong><br>
+
+                    </address>
+                </div>
+                <div class="col-xs-6">
+                    <address>
+                        Mecanico responsable:<strong> {{$orden->usuario_responsable}}</strong><br>
+                        <br>
+                        <strong>Fecha Entrega:</strong> <h2>{{$orden->fecha_entrega}}</h2><br>
+
                     </address>
                 </div>
             </div>
@@ -72,7 +94,7 @@
                 <div class="col-xs-6 text-right">
                     <address>
                         <strong>Fecha orden de trabajo:</strong><br>
-                       {{$orden[0]->fecha_registro}}<br><br>
+                       {{$orden->fecha_registro}}<br><br>
                     </address>
                 </div>
             </div>
@@ -83,7 +105,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><strong>Detalle de la factura</strong></h3>
+                    <h3 class="panel-title"><strong>Detalle de la orden</strong></h3>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -99,14 +121,28 @@
                             </thead>
                             <tbody>
 
-                                @foreach($orden as $item)
-                                <tr>
-                                    <td>{{$item->id_producto}}</td>
-                                    <td class="text-left">{{$item->nombre}}</td>
-                                    <td class="text-right">{{$item->precio}}</td>
-                                    <td class="text-center">{{$item->cantidad}}</td>
-                                    <td class="text-right">{{number_format(($item->precio * $item->cantidad ),2) }}</td>
-                                </tr>
+                                @foreach($productos as $item)
+                                    @if($item->id_producto !=null)
+                                        <tr>
+                                            <td>{{$item->id_producto}}</td>
+                                            <td class="text-left">{{$item->nombre}}</td>
+                                            <td class="text-right">{{$item->precio}}</td>
+                                            <td class="text-center">{{$item->cantidad}}</td>
+                                            <td class="text-right">{{number_format(($item->subtotal ),2) }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+
+                                @foreach($servicios as $item)
+                                    @if($item->id_servicio!=null)
+                                        <tr>
+                                            <td>{{$item->id_servicio}}</td>
+                                            <td class="text-left">{{$item->nombre}}</td>
+                                            <td class="text-right">{{$item->precio}}</td>
+                                            <td class="text-center">{{$item->cantidad}}</td>
+                                            <td class="text-right">{{number_format(($item->subtotal ),2) }}</td>
+                                        </tr>
+                                    @endif
     
                                 @endforeach
                                 <tr>
@@ -135,6 +171,14 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+            <button type="button" onclick="window.print()" class="btn btn-info">
+                <span class="glyphicon glyphicon-print"></span> Imprimir
+            </button>
         </div>
     </div>
 
