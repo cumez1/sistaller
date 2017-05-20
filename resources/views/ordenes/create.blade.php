@@ -10,44 +10,42 @@
     <!-- Modal Buscar Producto-->
 
     <div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        
-                    <input type="text" placeholder="Búsqueda Rápida" class="form-control" id="criterio" name="criterio" onkeyup="buscarCriterio(event)">
-                    <div class="input-group-addon">
-                        <a id="btnBuscar" href="#" data-toggle="tooltip" title="Buscar"><i class="fa fa-search"></i></a>
+        <div class="modal-dialog">
+          <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            
+                        <input type="text" placeholder="Búsqueda Rápida" class="form-control" id="criterio" name="criterio" onkeyup="buscarCriterio(event)">
+                        <div class="input-group-addon">
+                            <a id="btnBuscar" href="#" data-toggle="tooltip" title="Buscar"><i class="fa fa-search"></i></a>
+                        </div>
                     </div>
-                </div>
 
-                  <div class="modal-body">
+                      <div class="modal-body">
 
-                    <div class="outer_div" >
-                            <table class="table table-striped" id="listadoProductos">
-                                <thead>
-                                <tr class="warning">
-                                    <th>Código</th>
-                                    <th>Producto</th>
-                                    <th><span class="pull-right">Cant.</span></th>
-                                    <th><span class="pull-right">Precio</span></th>
-                                    <th style="width: 36px;">                                    
-                                </th>
-                                </thead>
-                            </table>
-                    </div>
-                    <!-- Datos ajax Final -->
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <div class="outer_div" >
+                                <table class="table table-striped" id="listadoProductos">
+                                    <thead>
+                                    <tr class="warning">
+                                        <th>Código</th>
+                                        <th>Producto</th>
+                                        <th><span class="pull-right">Cant.</span></th>
+                                        <th><span class="pull-right">Precio</span></th>
+                                        <th style="width: 36px;">                                    
+                                    </th>
+                                    </thead>
+                                </table>
+                        </div>
+                        <!-- Datos ajax Final -->
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        
+                      </div>
                     
-                  </div>
-                
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
-
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     
     <form class="form-horizontal" method="post" id="editar_item" name="editar_item">
     <!-- Modal Editar-->
@@ -103,119 +101,118 @@
         </div>
     </form>  
 
-    
-        <div class="row">
-            
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4><i class='glyphicon glyphicon-edit'></i> Nueva Venta</h4>
-                    </div>
-                    <div class="panel-body">
-                    
-                        <form class="form-horizontal" role="form" id="datos_cotizacion">
-                            {{ csrf_field() }}
-                            
+    <div class="row">
+        
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class='glyphicon glyphicon-edit'></i> Nueva Venta</h4>
+                </div>
+                <div class="panel-body">
+                
+                    <form class="form-horizontal" role="form" id="datos_cotizacion">
+                        {{ csrf_field() }}
+                        
 
-                            <div class="form-group row">
-	                            <label  class="col-md-3 control-label">Selecciona el cliente:</label>
-	                            <div class="col-md-5">
-	                                <input type="text" class="form-control input-sm" id="nit" placeholder="Ingresa el nombre del cliente" required>
-	                            </div>
+                        <div class="form-group row">
+                            <label  class="col-md-3 control-label">Selecciona el cliente:</label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control input-sm" id="nit" placeholder="Ingresa el nombre del cliente" required>
                             </div>
-                            <div class="form-group row">
-                                <label  class="col-md-3 control-label">Nombre Completo:</label>
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control input-sm" id="nombre" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label  class="col-md-3 control-label">Dirección:</label>
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control input-sm" id="direccion" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label  class="col-md-3 control-label">Email:</label>
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control input-sm" id="email" disabled>
-                                </div>
-                            </div>
-                          
-                            <div class="row">
-                                <label  class="col-md-3 control-label"></label>
-                                <div class="col-md-5">
-                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
-                                        <span class="glyphicon glyphicon-plus"></span> Agregar producto
-                                        </button>
-                                        <button type="button" onclick="window.print()" class="btn btn-default">
-                                        <span class="glyphicon glyphicon-print"></span> Imprimir
-                                        </button>
-                                </div>
-                            </div>  
-                        </form> 
-                        <div class="row">
-                            <div id="resultados" class="col-md-12" style="margin-top:10px">
-                                <table class="table" id="detalle">
-                                <tbody><tr>
-                                    <th>CODIGO</th>
-                                    <th class="text-center">CANT.</th>
-                                    <th>DESCRIPCION</th>
-                                    <th class="text-right">PRECIO UNIT.</th>
-                                    <th class="text-right">SUB TOTAL</th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <td colspan="4"><span class="pull-right">PARCIAL Q</span></td>
-                                    <td><span class="pull-right">0.00</span></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4"><span class="pull-right">DESCUENTO Q</span></td>
-                                    <td><span class="pull-right">0.00</span></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4"><span class="pull-right">NETO Q</span></td>
-                                    <td><span class="pull-right">0.00</span></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4"><span class="pull-right">IVA 12% Q</span></td>
-                                    <td><span class="pull-right">0.00</span></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4"><span class="pull-right">TOTAL Q</span></td>
-                                    <td><span class="pull-right">0.00</span></td>
-                                    <td></td>
-                                </tr>
-                                </tbody></table>
-                            </div>   
-                            <!-- Carga los datos ajax -->
                         </div>
-
-                        <form class="form-horizontal" role="form" id="datos_cotizacion">
-                            {{ csrf_field() }}
-                         
-                            <div class="row">
-                                <label  class="col-md-3 control-label"></label>
-                                <div class="col-md-5">
-                                        <a href="{{ route('factura.guardar' )}}" class="btn btn-success">
-                                        <i class="fa fa-floppy-o" aria-hidden="true"> Guardar Factura</i>
-                                        </a>
-                                        <a href="{{ route('factura.vaciar' )}}" class="btn btn-danger">
-                                        <i class="fa fa-undo" aria-hidden="true"> Vaciar</i>
-                                        </a>
-                                </div>
-                            </div>  
-                        </form> 
-
-
+                        <div class="form-group row">
+                            <label  class="col-md-3 control-label">Nombre Completo:</label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control input-sm" id="nombre" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-md-3 control-label">Dirección:</label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control input-sm" id="direccion" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-md-3 control-label">Email:</label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control input-sm" id="email" disabled>
+                            </div>
+                        </div>
+                      
+                        <div class="row">
+                            <label  class="col-md-3 control-label"></label>
+                            <div class="col-md-5">
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                                    <span class="glyphicon glyphicon-plus"></span> Agregar producto
+                                    </button>
+                                    <button type="button" onclick="window.print()" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-print"></span> Imprimir
+                                    </button>
+                            </div>
+                        </div>  
+                    </form> 
+                    <div class="row">
+                        <div id="resultados" class="col-md-12" style="margin-top:10px">
+                            <table class="table" id="detalle">
+                            <tbody><tr>
+                                <th>CODIGO</th>
+                                <th class="text-center">CANT.</th>
+                                <th>DESCRIPCION</th>
+                                <th class="text-right">PRECIO UNIT.</th>
+                                <th class="text-right">SUB TOTAL</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><span class="pull-right">PARCIAL Q</span></td>
+                                <td><span class="pull-right">0.00</span></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><span class="pull-right">DESCUENTO Q</span></td>
+                                <td><span class="pull-right">0.00</span></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><span class="pull-right">NETO Q</span></td>
+                                <td><span class="pull-right">0.00</span></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><span class="pull-right">IVA 12% Q</span></td>
+                                <td><span class="pull-right">0.00</span></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><span class="pull-right">TOTAL Q</span></td>
+                                <td><span class="pull-right">0.00</span></td>
+                                <td></td>
+                            </tr>
+                            </tbody></table>
+                        </div>   
+                        <!-- Carga los datos ajax -->
                     </div>
+
+                    <form class="form-horizontal" role="form" id="datos_cotizacion">
+                        {{ csrf_field() }}
+                     
+                        <div class="row">
+                            <label  class="col-md-3 control-label"></label>
+                            <div class="col-md-5">
+                                    <a href="{{ route('orden.guardar' )}}" class="btn btn-success">
+                                    <i class="fa fa-floppy-o" aria-hidden="true"> Guardar Factura</i>
+                                    </a>
+                                    <a href="{{ route('orden.vaciar' )}}" class="btn btn-danger">
+                                    <i class="fa fa-undo" aria-hidden="true"> Vaciar</i>
+                                    </a>
+                            </div>
+                        </div>  
+                    </form> factura
+
+
                 </div>
             </div>
         </div>
+    </div>
         
 @endsection
 

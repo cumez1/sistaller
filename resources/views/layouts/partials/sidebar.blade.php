@@ -47,7 +47,7 @@
 
             <li class="active"><a href="{{ route('servicio.index') }}"><i class='fa fa-cogs'></i> <span>Servicios</span></a></li>
             
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-shopping-cart'></i> <span>Ordenes de Trabajo</span></a></li>
+            <li class="active"><a href="{{ route('orden.index') }}"><i class='fa fa-shopping-cart'></i> <span>Ordenes de Trabajo</span></a></li>
 
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-file-pdf-o'></i> <span>Reportes</span></a></li>
 

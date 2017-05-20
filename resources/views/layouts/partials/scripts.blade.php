@@ -11,6 +11,9 @@
 
 <script src="{{ asset('js/datatables.min.js') }}"></script>
 
+<script src="{{ asset('js/blockUI.js') }}"></script>
+
+
 @include('sweet::alert')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the

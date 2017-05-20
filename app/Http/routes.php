@@ -44,19 +44,19 @@ Route::group(['prefix' => 'ordenes'], function(){
 
     Route::get('/','OrdenTrabajoController@index')->name('orden.index');
     Route::get('/create','OrdenTrabajoController@create')->name('orden.create');
-    Route::post('/recuperar','OrdenTrabajoController@recuperarRegistros');
-    Route::post('/recuperarCliente','OrdenTrabajoController@recuperarCliente');
+    Route::post('/recuperar','OrdenTrabajoController@recuperarRegistros')->name('orden.recupear');
+    Route::post('/recuperarCliente','OrdenTrabajoController@recuperarCliente')->name('orden.cliente');
     Route::get('/guardar', 'OrdenTrabajoController@guardar')->name('orden.guardar');
     Route::get('/vaciar', 'OrdenTrabajoController@vaciar')->name('orden.vaciar'); 
     Route::get('/show/{id}', 'OrdenTrabajoController@show')->name('orden.show');
     Route::post('/agregar/{producto}', 'OrdenTrabajoController@agregar')->name('orden.agregar');       
-    Route::post('/quitar/{producto}', 'OrdenTrabajoController@quitar');   
-    Route::post('/listadoAjax', 'OrdenTrabajoController@listadoAjax'); 
+    Route::post('/quitar/{producto}', 'OrdenTrabajoController@quitar')->name('orden.quitar');  
+    Route::post('/listadoAjax', 'OrdenTrabajoController@listadoAjax')->name('orden.listar');  
     Route::get('/listadoAjax', 'OrdenTrabajoController@listadoAjax');    
     
 });
 
-
+Route::post('cliente/buscar','ClienteController@recuperar')->name('cliente.recuperar');
 
 
 Route::group(['prefix' => 'test/'], function () {

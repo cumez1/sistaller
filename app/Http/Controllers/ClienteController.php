@@ -28,13 +28,20 @@ class ClienteController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http $cliente = Cliente::findOrFail($id); \Response
      */
     public function create()
     {
         return view('cliente.create');
     }
 
+    public function recuperar(Request $request){
+
+
+         $cliente = Cliente::where('nit','=',$request->nit)->first(); 
+
+         return $cliente;
+    }
     /**
      * Store a newly created resource in storage.
      *

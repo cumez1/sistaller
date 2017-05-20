@@ -31,10 +31,11 @@
             </div>
         </div>         
         <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-            <p class="pull-right">
-                <!--    -->                         
-            </p>
+            <p class="pull-right">                         
+                <a href="{{ route('orden.create') }}" class="btn btn-success">Nueva Orden</a>
+            </p> 
         </div>
+
     </div>
 
 
@@ -83,7 +84,7 @@
                 serverSide: true,      
                 order: [[ 0, "desc" ]],    
                 ajax: {
-                    url: "/ordenes/listadoAjax",
+                    url: "{{ route('orden.listar') }}",
                     type: 'POST',
                     data : function (d) {                    
                         d._token = $('input[name="_token"]').val()                   

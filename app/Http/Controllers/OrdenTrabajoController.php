@@ -36,7 +36,7 @@ class OrdenTrabajoController extends Controller
 
     public function create()
     {
-        return view('ordenes.create');
+        return view('ordenes.crear');
     }
 
     public function show($id)
@@ -84,8 +84,6 @@ class OrdenTrabajoController extends Controller
         if($id !=""){
             $cliente = Cliente::findOrFail($id); 
         }
-
-               
         
         return $cliente;
     }
