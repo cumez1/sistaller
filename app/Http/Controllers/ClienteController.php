@@ -35,6 +35,18 @@ class ClienteController extends Controller
         return view('cliente.create');
     }
 
+    public function buscar(Request $request){
+
+        $cliente = Cliente::where('nit', '=', $request->nit)->firstOrFail();        
+        
+        $carrito = \Session::get('carrito');
+
+        $carrito['nit'] = $cliente->id_cliente;
+        \Session::put('carrito', $carrito);
+        
+        return $cliente;
+    }
+
     public function recuperar(Request $request){
 
 

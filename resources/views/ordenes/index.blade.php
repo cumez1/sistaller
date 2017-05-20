@@ -48,7 +48,8 @@
                         <th>Fecha</th>
                         <th>Nit </th>
                         <th>Nombre Cliente</th>                        
-                        <th>Total</th>
+                        <th>Total Productos</th>
+                        <th>Total Servicios</th>
                         <th>Acciones&nbsp;&nbsp;&nbsp;&nbsp;</th>
                     </thead>
                 </table>
@@ -78,7 +79,7 @@
                 language: {
                     url: "{{asset('/js/Spanish.json')}}"
                 },
-                             
+                lengthMenu: {{ config('constantes.datatableListRows') }},        
                 bFilter : false, //oculta filtros            
                 processing: true,
                 serverSide: true,      
@@ -97,7 +98,8 @@
                     {data: 2, name: 'nit', searchable: false, width: "10%"},
                     {data: 3, name: 'nombre',searchable: true, width: "25%"},
                     {data: 4, name: 'total', width: "15%", className: "text-right"},
-                    {data: 5, name: 'acciones',  orderable: false, width: "15%"}
+                    {data: 5, name: 'totalservicio', width: "15%", className: "text-right"},
+                    {data: 6, name: 'acciones',  orderable: false, width: "15%"}
                 ]
             });
         }

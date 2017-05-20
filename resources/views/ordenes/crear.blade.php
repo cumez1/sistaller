@@ -18,8 +18,8 @@
 
     <!-- Main content -->
     <section class="content">
-        <!-- Modal Buscar Producto-->
-
+        
+        <!-- Modal Buscar Productos-->
         <div class="modal fade" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -56,8 +56,49 @@
                         
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+        </div>
+        <!-- Modal Buscar Productos -->
         
+        <!-- Modal Buscar Servicios-->
+        <div class="modal fade" id="modalServicio">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                
+                            <input type="text" placeholder="Búsqueda Rápida" class="form-control" id="criterio2" name="criterio2" onkeyup="buscarCriterio2(event)">
+                            <div class="input-group-addon">
+                                <a id="btnBuscar" href="#" data-toggle="tooltip" title="Buscar"><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+
+                          <div class="modal-body">
+
+                            <div class="outer_div" >
+                                    <table class="table table-striped" id="listadoServicios">
+                                        <thead>
+                                        <tr class="warning">
+                                            <th>Código</th>
+                                            <th>Servicio</th>
+                                            <th><span class="pull-right">Descripción</span></th>
+                                            <th><span class="pull-right">Precio</span></th>
+                                            <th style="width: 36px;">                                    
+                                        </th>
+                                        </thead>
+                                    </table>
+                            </div>
+                            <!-- Datos ajax Final -->
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            
+                          </div>
+                        
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <!-- Modal Buscar Servicios -->
+
         <form class="form-horizontal" method="post" id="editar_item" name="editar_item">
         <!-- Modal Editar-->
             <div class="modal fade " id="editModalItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -155,7 +196,7 @@
                                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
                                         <span class="glyphicon glyphicon-plus"></span> Agregar producto
                                         </button>
-                                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalServicio">
                                         <span class="glyphicon glyphicon-plus"></span> Agregar Servicio
                                         </button>
                                         <button type="button" onclick="window.print()" class="btn btn-default">
@@ -239,7 +280,8 @@
 
         $(document).ready( function () {      
             listarProductos();
-            //recupearCliente();
+            listarServicios();
+            recupearCliente();
             recupearRegistros();
             verificarDespues();
         });
@@ -253,12 +295,12 @@
                 language: {
                     url: "{{ asset('/js/Spanish.json')}}"
                 },
-                             
+                lengthMenu: {{ config('constantes.datatableListRows') }},          
                 bFilter : false, //oculta filtros            
                 processing: true,
                 serverSide: true,            
                 ajax: {
-                    url: "/productos/listadoAjax",
+                    url: "{{ route('producto.listar') }}",
                     type: 'POST',
                     data : function (d) {                    
                         d._token = $('input[name="_token"]').val()                   
@@ -266,11 +308,45 @@
                     }
                 },
                 columns: [
-                    {data: 0, name: 'id_producto', searchable: true},
-                    {data: 1, name: 'nombre', searchable: true},
-                    {data: 2, name: 'cantidad'},
-                    {data: 3, name: 'precio'},
-                    {data: 4, name: 'acciones',  orderable: false}
+                    {data: 0, name: 'id_producto', searchable: true,width: "10%"},
+                    {data: 1, name: 'nombre', searchable: true, width: "20%",className: "text-left"},
+                    {data: 2, name: 'cantidad', width: "30%"},
+                    {data: 3, name: 'precio', width: "10%"},
+                    {data: 4, name: 'acciones',  orderable: false,width: "10%"}
+                ],
+                createdRow: function( row, data, dataIndex ) {
+                   $( row ).find('td:eq(2)').attr('class', 'col-xs-1');
+                }
+            });
+        }
+
+        function listarServicios(){
+
+            $('#listadoServicios').DataTable({
+                columnDefs: [
+                    { className: "dt-body-center", targets: [ 1 ]}
+                ],            
+                language: {
+                    url: "{{ asset('/js/Spanish.json')}}"
+                },
+                lengthMenu: {{ config('constantes.datatableListRows') }},          
+                bFilter : false, //oculta filtros            
+                processing: true,
+                serverSide: true,            
+                ajax: {
+                    url: "{{ route('servicio.listar') }}",
+                    type: 'POST',
+                    data : function (d) {                    
+                        d._token = $('input[name="_token"]').val()                   
+                        d.criterio = $("#criterio").val();                        
+                    }
+                },
+                columns: [
+                    {data: 0, name: 'id_servicio', searchable: true,width: "10%"},
+                    {data: 1, name: 'nombre', searchable: true, width: "15%",className: "text-left"},
+                    {data: 2, name: 'descripcion', width: "40%",className: "text-left"},
+                    {data: 3, name: 'precio', width: "10%"},
+                    {data: 4, name: 'acciones',  orderable: false,width: "10%"}
                 ],
                 createdRow: function( row, data, dataIndex ) {
                    $( row ).find('td:eq(2)').attr('class', 'col-xs-1');
@@ -279,26 +355,41 @@
         }
 
         function recupearCliente(){
-            var URL ="{{ route('cliente.recuperar') }}";
+            var URL ="{{ route('orden.cliente') }}";
             var token = $("input[name='_token']").val();
-            var data = {nit: $("#nit").val()};
+            var datos = {nit: $("#nit").val()};
 
-            callAjax(URL,token, data, function (response) {
-
-                $("#nit").val(response.nit);
-                $("#nombre").val(response.nombre +" "+response.apellido);
-                $("#direccion").val(response.direccion );
-                $("#email").val(response.telefono );
-                
+            $.ajax({
+                type: "POST",
+                url: URL,
+                dataType : 'json',
+                headers: {'X-CSRF-TOKEN': token},
+                data: datos,
+                success: function(data){
+                    $("#nit").val(data.nit);
+                    $("#nombre").val(data.nombre +" "+data.apellido);
+                    $("#direccion").val(data.direccion );
+                    $("#email").val(data.telefono );
+                },  
+                error: function(data){
+                    $("#nit").val('');
+                    $("#nombre").val('');
+                    $("#direccion").val('');
+                    $("#email").val('');
+                }          
             });
         }
 
         function recupearRegistros(){
+            
+            var URL ="{{ route('orden.recupear') }}";
+            var token = $("input[name='_token']").val();
+
             $.ajax({
                     headers:{
-                        'X-CSRF-Token': $('input[name="_token"]').val()
+                        'X-CSRF-Token': token
                     },
-                    url: "{{ route('orden.recupear') }}",
+                    url: URL,
                     type: 'POST',
                     dataType: 'json',
                     success: function( data ){
@@ -336,7 +427,7 @@
             if(tipo==1){
                 toastr['error']("No se encontro el cliente que busca", "MINGO FACTURACION")
             }
-        };
+        }
 
         function verificarDespues(){
             toastr.options = {
@@ -379,79 +470,104 @@
         function agregar(event, id_producto){
             event.preventDefault();
             var rowCount = $('#detalle tr').length;
+            var URL ="{{ route('orden.agregar') }}";
+            var token = $("input[name='_token']").val();
+            var datos = {id_producto: id_producto};
 
             $.ajax({
-                    headers:{
-                        'X-CSRF-Token': $('input[name="_token"]').val()
-                    },
-                    url: '/facturas/agregar/'+id_producto,
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function( data ){
-                        //$('#detalle > tbody > tr').eq(rowCount-6).after(data.fila);
-                        $('#resultados').empty();
-                        $('#resultados').html(data.response);
+                type: "POST",
+                url: URL,
+                dataType : 'json',
+                headers: {'X-CSRF-TOKEN': token},
+                data: datos,
+                success: function(data){
+                    $('#resultados').empty();
+                    $('#resultados').html(data.response);
+                },  
+                error: function(data){
 
-                    },  
-                    error: function( data ){
+                }          
+            });
+        };
 
-                    }
+        function agregarServ(event, id_servicio){
+            event.preventDefault();
+            var rowCount = $('#detalle tr').length;
+            var URL ="{{ route('orden.agregarserv') }}";
+            var token = $("input[name='_token']").val();
+            var datos = {id_servicio: id_servicio};
+
+            $.ajax({
+                type: "POST",
+                url: URL,
+                dataType : 'json',
+                headers: {'X-CSRF-TOKEN': token},
+                data: datos,
+                success: function(data){
+                    $('#resultados').empty();
+                    $('#resultados').html(data.response);
+                },  
+                error: function(data){
+
+                }          
             });
         };
 
         function eliminar(event, id_producto){
             event.preventDefault();
+            var URL ="{{ route('orden.quitar') }}";
+            var token = $("input[name='_token']").val();
+            var datos = {id_producto: id_producto};
             
             $.ajax({
-                    headers:{
-                        'X-CSRF-Token': $('input[name="_token"]').val()
-                    },
-                    url: '/facturas/quitar/'+id_producto,
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function( data ){
-                        //$('#detalle > tbody > tr').eq(rowCount-6).after(data.fila);
-                        $('#resultados').empty();
-                        $('#resultados').html(data.response);
+                type: "POST",
+                url: URL,
+                dataType : 'json',
+                headers: {'X-CSRF-TOKEN': token},
+                data: datos,
+                success: function(data){
+                    $('#resultados').empty();
+                    $('#resultados').html(data.response);
+                },  
+                error: function(data){
 
-                    },  
-                    error: function( data ){
-
-                    }
+                }          
             });
-        };
+        }
         
         $("#nit").keypress(function(e) {
             if(e.which == 13) {
+                var URL ="{{ route('cliente.buscar') }}";
+                var token = $("input[name='_token']").val();
+                var datos = {nit: $("#nit").val()};
 
-                recupearCliente();
+                $.ajax({
+                    type: "POST",
+                    url: URL,
+                    dataType : 'json',
+                    headers: {'X-CSRF-TOKEN': token},
+                    data: datos,
+                    success: function(data){
+                        
+                        $("#nit").val(data.nit);
+                        $("#nombre").val(data.nombre +" "+data.apellido);
+                        $("#direccion").val(data.direccion );
+                        $("#email").val(data.telefono );
+                    },  
+                    error: function(data){
+                        $("#nit").val('');
+                        $("#nombre").val('');
+                        $("#direccion").val('');
+                        $("#email").val('');
+                    }          
+                });
+                
             }
         });
 
         $("#btnBuscar").click(function () {            
             $('#listadoProductos').DataTable().ajax.reload();
         });
-
-        function callAjax(url,token,datos, response){    
-            $.blockUI({ 
-                message: '<i class="fa fa-cog fa-spin fa-2x fa-fw"></i><span>Cargando...</span>' ,
-                css: { 
-                    backgroundColor: 'none', 
-                    color: '#fff',
-                    border: 'none',
-                }
-            });
-            $.ajax({
-                type: "POST",
-                url: url,
-                dataType : 'json',
-                headers: {'X-CSRF-TOKEN': token},
-                data: datos,
-                success: response,
-                error:response           
-            });                
-        }
-        
 
    </script>
 
