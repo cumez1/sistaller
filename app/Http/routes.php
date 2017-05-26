@@ -62,6 +62,7 @@ Route::post('cliente/recuperar','ClienteController@recuperar')->name('cliente.re
 
 Route::post('producto/listado','ProductoController@listadoAjax')->name('producto.listar');
 Route::post('servicio/listado','ServicioController@listadoAjax')->name('servicio.listar');
+Route::get('home/dashboard','DashboardController@index')->name('home.dashboard');
 
 
 Route::group(['prefix' => 'test/'], function () {

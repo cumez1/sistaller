@@ -32,26 +32,59 @@
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
             <li class="header">OPCIONES</li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class='fa fa-shopping-cart'></i> <span>Ordenes de Trabajo</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ route('orden.create') }}"><i class="fa fa-circle-o"></i> Nueva Orden</a></li>
+                <li><a href="{{ route('orden.index') }}"><i class='fa fa-shopping-cart'></i> <span>Ordenes de Trabajo</span></a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class='fa fa-cog'></i> <span>Administración</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li class="active"><a href="{{ route('usuario.index') }}"><i class='fa fa-user'></i> <span>Usuarios</span></a></li>
+
+                <li class="active"><a href="{{ route('cliente.index') }}"><i class='fa fa-users'></i> <span>Clientes</span></a></li>
+
+                <li class="active"><a href="{{ route('categoria.index') }}"><i class='fa fa-sitemap'></i> <span>Categoria Productos</span></a></li>
+
+                <li class="active"><a href="{{ route('producto.index') }}"><i class='fa fa fa-barcode'></i> <span>Productos</span></a></li>
+
+                <li class="active"><a href="{{ route('tiposervicio.index') }}"><i class='fa fa-cog'></i> <span>Categoria Serivicios</span></a></li>
+
+                <li class="active"><a href="{{ route('servicio.index') }}"><i class='fa fa-cogs'></i> <span>Servicios</span></a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class='fa fa-file-pdf-o'></i> <span>Reportes</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li class="active"><a href="{{ url('home') }}"><i class='fa fa-money'></i> <span>Ganancias</span></a></li>
+                <li class="active"><a href="{{ url('home') }}"><i class='fa fa-cart-arrow-down'></i> <span>Ordenes de Trabajo</span></a></li>
+                
+                <li class="active"><a href="{{ url('home') }}"><i class='fa fa-users'></i> <span>Clientes</span></a></li>
+                <li class="active"><a href="{{ url('home') }}"><i class='fa fa-tag'></i> <span>Productos</span></a></li>
+              </ul>
+            </li>
+
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-tachometer'></i> <span>Dashboard</span></a></li>
+            <li class="active"><a href="{{ route('home.dashboard') }}"><i class='fa fa-tachometer'></i> <span>Dashboard</span></a></li>
             
-            <li class="active"><a href="{{ route('usuario.index') }}"><i class='fa fa-user'></i> <span>Usuarios</span></a></li>
-
-            <li class="active"><a href="{{ route('cliente.index') }}"><i class='fa fa-users'></i> <span>Clientes</span></a></li>
-
-            <li class="active"><a href="{{ route('categoria.index') }}"><i class='fa fa-sitemap'></i> <span>Categoria Productos</span></a></li>
-
-            <li class="active"><a href="{{ route('producto.index') }}"><i class='fa fa fa-barcode'></i> <span>Productos</span></a></li>
-
-            <li class="active"><a href="{{ route('tiposervicio.index') }}"><i class='fa fa-cog'></i> <span>Categoria Serivicios</span></a></li>
-
-            <li class="active"><a href="{{ route('servicio.index') }}"><i class='fa fa-cogs'></i> <span>Servicios</span></a></li>
-            
-            <li class="active"><a href="{{ route('orden.index') }}"><i class='fa fa-shopping-cart'></i> <span>Ordenes de Trabajo</span></a></li>
-
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-file-pdf-o'></i> <span>Reportes</span></a></li>
-
-
             
         </ul><!-- /.sidebar-menu -->
     </section>
