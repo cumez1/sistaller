@@ -15,6 +15,8 @@
 
 <script src="{{ asset('/js/toastr.min.js') }}"></script>
 
+<script src="{{ asset('/js/bootstrap-datepicker.min.js') }}"></script>
+
 
 @include('sweet::alert')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

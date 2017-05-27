@@ -64,6 +64,17 @@ Route::post('producto/listado','ProductoController@listadoAjax')->name('producto
 Route::post('servicio/listado','ServicioController@listadoAjax')->name('servicio.listar');
 Route::get('home/dashboard','DashboardController@index')->name('home.dashboard');
 
+Route::get('reporte/v_ganancias','ReporteController@vRptGanancias')->name('reporte.v_ganancias');
+Route::get('reporte/v_ordenes','ReporteController@vRptOrdenes')->name('reporte.v_ordenes');
+Route::get('reporte/v_clientes','ReporteController@vRptClientes')->name('reporte.v_clientes');
+Route::get('reporte/v_productos','ReporteController@vRptProductos')->name('reporte.v_productos');
+
+
+Route::post('reporte/ganancias','ReporteController@rptGanancias')->name('reporte.ganancias');
+Route::post('reporte/ordenes','ReporteController@rptOrdenes')->name('reporte.ordenes');
+Route::post('reporte/clientes','ReporteController@rptClientes')->name('reporte.clientes');
+Route::post('reporte/productos','ReporteController@rptProductos')->name('reporte.productos');
+
 
 Route::group(['prefix' => 'test/'], function () {
     Route::get('usuarios', function(){

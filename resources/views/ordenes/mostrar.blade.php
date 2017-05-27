@@ -157,14 +157,14 @@
                                     <td class="no-line"></td>
                                     <td class="no-line"></td>
                                     <td class="no-line text-center"><strong>IVA 12%</strong></td>
-                                    <td class="no-line text-right">{{number_format(($total*0.12),2)}}</td>
+                                    <td class="no-line text-right">{{number_format(($total*0),2)}}</td>
                                 </tr>
                                 <tr>
                                     <td class="no-line"></td>
                                     <td class="no-line"></td>
                                     <td class="no-line"></td>
                                     <td class="no-line text-center"><strong>Total</strong></td>
-                                    <td class="no-line text-right">{{number_format((($total*0.12) + $total),2)}}</td>
+                                    <td class="no-line text-right">{{number_format((($total*0) + $total),2)}}</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -74,11 +74,11 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="{{ url('home') }}"><i class='fa fa-money'></i> <span>Ganancias</span></a></li>
-                <li class="active"><a href="{{ url('home') }}"><i class='fa fa-cart-arrow-down'></i> <span>Ordenes de Trabajo</span></a></li>
+                <li class="active"><a href="{{ route('reporte.v_ganancias') }}"><i class='fa fa-money'></i> <span>Ganancias</span></a></li>
+                <li class="active"><a href="{{ route('reporte.v_ordenes')  }}"><i class='fa fa-cart-arrow-down'></i> <span>Ordenes de Trabajo</span></a></li>
                 
-                <li class="active"><a href="{{ url('home') }}"><i class='fa fa-users'></i> <span>Clientes</span></a></li>
-                <li class="active"><a href="{{ url('home') }}"><i class='fa fa-tag'></i> <span>Productos</span></a></li>
+                <li class="active"><a href="{{ route('reporte.v_clientes')  }}"><i class='fa fa-users'></i> <span>Clientes</span></a></li>
+                <li class="active"><a href="{{ route('reporte.v_productos')  }}"><i class='fa fa-tag'></i> <span>Productos</span></a></li>
               </ul>
             </li>
 

@@ -197,12 +197,12 @@ class OrdenTrabajoController extends Controller
         </tr>
         <tr>
             <td colspan="4"><span class="pull-right">IVA 12% Q</span></td>
-            <td><span class="pull-right">'.number_format(($total * 0.12),2).'</span></td>
+            <td><span class="pull-right">'.number_format(($total * 0),2).'</span></td>
                                     <td></td>
         </tr>
         <tr>
             <td colspan="4"><span class="pull-right">TOTAL Q</span></td>
-            <td><span class="pull-right">'.number_format(($total + ($total*0.12)),2).'</span></td>
+            <td><span class="pull-right">'.number_format(($total + ($total*0)),2).'</span></td>
             <td></td>
         </tr>
         </tbody>
@@ -308,27 +308,6 @@ class OrdenTrabajoController extends Controller
 
     public function guardar(Request $request){
 
-       /*
-
-        $table->increments('id_orden');
-            $table->integer('id_cliente')->unsigned();
-            $table->string('cliente_contacto');
-
-            $table->date('fecha_registro');
-            $table->date('fecha_entrega');
-            $table->string('tipo_vehiculo')->nullable();
-            $table->string('vehiculo')->nullable();
-            $table->string('modelo')->nullable();
-            $table->string('placa')->nullable();
-
-            $table->string('usuario_registra');
-            $table->string('usuario_responsable')->nullable();
-           
-            $table->longText('observaciones')->nullable();
-            $table->integer('estado');
-
-    */
-
         $carrito = Session::get('carrito');
 
         $orden = new OrdenTrabajo();
@@ -415,7 +394,7 @@ class OrdenTrabajoController extends Controller
         }
 
 
-        session()->flash('exitoso', 'Se ha registrado con exito la La Factura No. '.$num_orden);
+        session()->flash('exitoso', 'Se ha registrado con exito el orden de trabajo No. '.$num_orden);
 
         $this->vaciar();
         $ajaxData['status']= 200;        
@@ -574,8 +553,8 @@ class OrdenTrabajoController extends Controller
                    $orden->fecha_registro,
                    $orden->nit,
                    $orden->nombre.' '.$orden->apellido,
-                   number_format(($orden->total+($orden->total*0.12)),2),  
-                   number_format(($orden->totalservicio+($orden->totalservicio*0.12)),2),                  
+                   number_format(($orden->total+($orden->total*0)),2),  
+                   number_format(($orden->totalservicio+($orden->totalservicio*0)),2),                  
                    $acciones
                 );
 

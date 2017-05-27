@@ -461,9 +461,6 @@
             });
         };
 
-        href="{{ route('orden.guardar' )}}"
-
-
         function agregarServ(event, id_servicio){
             event.preventDefault();
             var rowCount = $('#detalle tr').length;
