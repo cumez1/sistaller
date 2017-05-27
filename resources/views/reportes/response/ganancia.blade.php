@@ -51,8 +51,8 @@
                                     <td class="text-center"><strong>Codigo Orden</strong></td>
                                     <td class="text-center"><strong>Fecha</strong></td>
                                     <td class="text-center"><strong>Cliente</strong></td>
-                                    <td class="text-center"><strong>Costo</strong></td>
                                     <td class="text-center"><strong>Precio</strong></td>
+                                    <td class="text-center"><strong>Costo</strong></td>
                                     <td class="text-center"><strong>Ganancia</strong></td>
                                 </tr>
                             </thead>
@@ -66,10 +66,15 @@
                                         @php
                                             $costo = $item->costo+$item->costoServicio;
                                             $precio = $item->total+$item->totalservicio;
+                                            $ganancia = $costo-$precio;
+
+                                            if($ganancia < 0){
+                                                $ganancia = $ganancia*-1;
+                                            }
                                         @endphp
                                         <td class="text-right">{{number_format(($costo),2) }}</td>
                                         <td class="text-right">{{number_format(($precio),2) }}</td>
-                                        <td class="text-right">{{number_format(($precio-$costo),2) }}</td>
+                                        <td class="text-right">{{number_format(($ganancia),2) }}</td>
                                     </tr>
 
                                 @endforeach
